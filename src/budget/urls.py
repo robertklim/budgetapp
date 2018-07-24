@@ -19,5 +19,6 @@ from . import views
 
 urlpatterns = [
     path('', views.project_list, name='project_list'),
+    path('create', views.ProjectCreateView.as_view(), name='create'),
     path('<slug:project_slug>', views.project_detail, name='project_detail'),
 ]
