@@ -51,9 +51,16 @@
                             <div class="col l">
                                 <span class="title">{{ expense.category.name }}</span>
                             </div>
-                            <a href="">
+                            <a onclick="deleteExpense(this)" data-id="{{ expense.id }}" class="btnRemove">
                                 <i class="material-icons red-text right">close</i>
                             </a>
+                            <!-- <form action="" method="DELETE">
+                                <input type="hidden" name="expenseId" value="{{ expense.id }}">
+                                <button class="btn-small waves-effect waves-light right modal-trigger" href="#expenseModal" type="submit" name="action">
+                                    <i class="material-icons left">close</i>
+                                    delete
+                                </button>
+                            </form> -->
                         </div>
                     </div>
                 </li>
@@ -93,6 +100,22 @@
     
     var elem = document.querySelector('select');
     var instance = M.FormSelect.init(elem);
+
+    function deleteExpense(e) {
+        let id = e.dataset.id;
+        e.closest('li').remove();
+        fetch('', {
+            method: 'DELETE',
+            headers: {
+               'X-CSRFToken': '{{ csrf_token }}' 
+            },
+            body: JSON.stringify({
+                'id': id
+            }),
+            credentials: 'same-origin',
+        })
+    }
+
 </script>
 
 {% endblock %}
