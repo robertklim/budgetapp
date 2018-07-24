@@ -24,7 +24,7 @@ class Category(models.Model):
         verbose_name_plural = 'categories'
 
 class Expanse(models.Model):
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='expanses')
     name = models.CharField(max_length=128)
     amount = models.DecimalField(max_digits=8, decimal_places=2)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)

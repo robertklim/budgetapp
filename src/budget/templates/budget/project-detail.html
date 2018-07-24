@@ -3,24 +3,28 @@
 {% block content %}
 
 <div class="container">
+    <section>
+        <div class="card-panel">
+            <h5>Project: {{ project.name }}</h6>
+    </section>
     <section class="section section-stats">
         <div class="row">
             <div class="col s12 m12 l4">
                 <div class="card-panel">
                     <h5>Total budget</h6>
-                    <h1>$3000</h1>
+                    <h1>${{ project.budget }}</h1>
                 </div>
             </div>
             <div class="col s12 m6 l4">
                 <div class="card-panel">
-                    <h5>Total budget</h6>
-                    <h1>$3000</h1>
+                    <h5>Budget balance</h6>
+                    <h1>$...</h1>
                 </div>
             </div>
             <div class="col s12 m6 l4">
                 <div class="card-panel">
-                    <h5>Total budget</h6>
-                    <h1>$3000</h1>
+                    <h5>Total expanses</h6>
+                    <h1>$...</h1>
                 </div>
             </div>
         </div>
@@ -34,78 +38,26 @@
             </button>
         </div>
         <ul class="z-depth-1">
-            <li>
-                <div class="card-panel z-depth-0 expanse">
-                    <div class="row">
-                        <div class="col l6">
-                            <span class="title">Front design</span>
+            {% for expanse in expanse_list %}
+                <li>
+                    <div class="card-panel z-depth-0 expanse">
+                        <div class="row">
+                            <div class="col l6">
+                                <span class="title">{{ expanse.name }}</span>
+                            </div>
+                            <div class="col l3">
+                                <span class="title">${{ expanse.amount }}</span>
+                            </div>
+                            <div class="col l">
+                                <span class="title">{{ expanse.category.name }}</span>
+                            </div>
+                            <a href="">
+                                <i class="material-icons red-text right">close</i>
+                            </a>
                         </div>
-                        <div class="col l3">
-                            <span class="title">$123</span>
-                        </div>
-                        <div class="col l">
-                            <span class="title">Development</span>
-                        </div>
-                        <a href="">
-                            <i class="material-icons red-text right">close</i>
-                        </a>
                     </div>
-                </div>
-            </li>
-            <li>
-                <div class="card-panel z-depth-0 expanse">
-                    <div class="row">
-                        <div class="col l6">
-                            <span class="title">Front design</span>
-                        </div>
-                        <div class="col l3">
-                            <span class="title">$123</span>
-                        </div>
-                        <div class="col l">
-                            <span class="title">Development</span>
-                        </div>
-                        <a href="">
-                            <i class="material-icons red-text right">close</i>
-                        </a>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="card-panel z-depth-0 expanse">
-                    <div class="row">
-                        <div class="col l6">
-                            <span class="title">Front design</span>
-                        </div>
-                        <div class="col l3">
-                            <span class="title">$123</span>
-                        </div>
-                        <div class="col l">
-                            <span class="title">Development</span>
-                        </div>
-                        <a href="">
-                            <i class="material-icons red-text right">close</i>
-                        </a>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="card-panel z-depth-0 expanse">
-                    <div class="row">
-                        <div class="col l6">
-                            <span class="title">Front design</span>
-                        </div>
-                        <div class="col l3">
-                            <span class="title">$123</span>
-                        </div>
-                        <div class="col l">
-                            <span class="title">Development</span>
-                        </div>
-                        <a href="">
-                            <i class="material-icons red-text right">close</i>
-                        </a>
-                    </div>
-                </div>
-            </li>
+                </li>
+            {% endfor %}
         </ul>
     </section>
 
