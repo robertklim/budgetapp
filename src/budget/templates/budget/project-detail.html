@@ -23,33 +23,33 @@
             </div>
             <div class="col s12 m6 l4">
                 <div class="card-panel">
-                    <h5>Total expanses</h6>
+                    <h5>Total expenses</h6>
                     <h1>$...</h1>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section section-expanses">
+    <section class="section section-expenses">
         <div class="row">
             <button class="btn-large waves-effect waves-light right" type="submit" name="action">
                 <i class="material-icons left">add_circle</i>
-                Add expanse
+                Add expense
             </button>
         </div>
         <ul class="z-depth-1">
-            {% for expanse in expanse_list %}
+            {% for expense in expense_list %}
                 <li>
-                    <div class="card-panel z-depth-0 expanse">
+                    <div class="card-panel z-depth-0 expense">
                         <div class="row">
                             <div class="col l6">
-                                <span class="title">{{ expanse.name }}</span>
+                                <span class="title">{{ expense.name }}</span>
                             </div>
                             <div class="col l3">
-                                <span class="title">${{ expanse.amount }}</span>
+                                <span class="title">${{ expense.amount }}</span>
                             </div>
                             <div class="col l">
-                                <span class="title">{{ expanse.category.name }}</span>
+                                <span class="title">{{ expense.category.name }}</span>
                             </div>
                             <a href="">
                                 <i class="material-icons red-text right">close</i>
