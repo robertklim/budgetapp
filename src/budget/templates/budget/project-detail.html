@@ -18,13 +18,19 @@
             <div class="col s12 m6 l4">
                 <div class="card-panel">
                     <h5>Budget balance</h6>
-                    <h1>$...</h1>
+                    {% if project.budget_balance > 0 %}
+                        <h1 class="green-text">${{ project.budget_balance }}</h1>
+                    {% elif project.budget_balance == 0 %}
+                        <h1 class="orange-text">${{ project.budget_balance }}</h1>
+                    {% else %}
+                        <h1 class="red-text">${{ project.budget_balance }}</h1>
+                    {% endif %}
                 </div>
             </div>
             <div class="col s12 m6 l4">
                 <div class="card-panel">
                     <h5>Total expenses</h6>
-                    <h1>$...</h1>
+                    <h1>{{ project.total_expenses }}</h1>
                 </div>
             </div>
         </div>

@@ -22,7 +22,6 @@ def project_detail(request, project_slug):
     
     elif request.method == 'POST':
         form = ExpenseForm(request.POST)
-        print(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
             amount = form.cleaned_data['amount']
@@ -39,7 +38,6 @@ def project_detail(request, project_slug):
     
     elif request.method == 'DELETE':
         id = json.loads(request.body)['id']
-        print(id)
         expense = get_object_or_404(Expense, id=id)
         expense.delete()
         return HttpResponse('')
