@@ -58,16 +58,18 @@
                             <div class="col l">
                                 <span class="title">{{ expense.category.name }}</span>
                             </div>
-                            <a onclick="deleteExpense(this)" data-id="{{ expense.id }}" class="btnRemove">
+                            <!-- <a onclick="deleteExpense(this)" data-id="{{ expense.id }}" class="btnRemove">
                                 <i class="material-icons red-text right">close</i>
-                            </a>
-                            <!-- <form action="" method="DELETE">
+                            </a> -->
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="deletePost" value="1">
                                 <input type="hidden" name="expenseId" value="{{ expense.id }}">
-                                <button class="btn-small waves-effect waves-light right modal-trigger" href="#expenseModal" type="submit" name="action">
+                                <button class="btn-small waves-effect waves-light red right" type="submit" name="action">
                                     <i class="material-icons left">close</i>
                                     delete
                                 </button>
-                            </form> -->
+                            </form>
                         </div>
                     </div>
                 </li>
@@ -108,7 +110,7 @@
     var elem = document.querySelector('select');
     var instance = M.FormSelect.init(elem);
 
-    function deleteExpense(e) {
+    /* function deleteExpense(e) {
         let id = e.dataset.id;
         e.closest('li').remove();
         fetch('', {
@@ -121,7 +123,7 @@
             }),
             credentials: 'same-origin',
         })
-    }
+    } */
 
 </script>
 

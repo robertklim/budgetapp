@@ -14,7 +14,6 @@ def project_list(request):
 
 def project_detail(request, project_slug):
     project = get_object_or_404(Project, slug=project_slug)
-
     if request.method == 'GET':
         category_list = Category.objects.filter(project=project)
         return render(request, 'budget/project-detail.html', {
@@ -24,26 +23,31 @@ def project_detail(request, project_slug):
                 })
     
     elif request.method == 'POST':
-        form = ExpenseForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['name']
-            amount = form.cleaned_data['amount']
-            category_name = form.cleaned_data['category']
+        if request.POST.get('deletePost') != '1':
+            form = ExpenseForm(request.POST)
+            if form.is_valid():
+                name = form.cleaned_data['name']
+                amount = form.cleaned_data['amount']
+                category_name = form.cleaned_data['category']
 
-            category = get_object_or_404(Category, project=project, name=category_name)
+                category = get_object_or_404(Category, project=project, name=category_name)
 
-            Expense.objects.create(
-                project = project,
-                name = name,
-                amount = amount,
-                category = category,
-            ).save()
+                Expense.objects.create(
+                    project = project,
+                    name = name,
+                    amount = amount,
+                    category = category,
+                ).save()
+        elif request.POST.get('deletePost') == '1':
+            print('delete')
+            expense = get_object_or_404(Expense, id=request.POST.get('expenseId'))
+            expense.delete()
     
-    elif request.method == 'DELETE':
-        id = json.loads(request.body)['id']
-        expense = get_object_or_404(Expense, id=id)
-        expense.delete()
-        return HttpResponse('')
+    # elif request.method == 'DELETE':
+    #     id = json.loads(request.body)['id']
+    #     expense = get_object_or_404(Expense, id=id)
+    #     expense.delete()
+    #     return HttpResponse('')
 
     return HttpResponseRedirect(project_slug)
 
