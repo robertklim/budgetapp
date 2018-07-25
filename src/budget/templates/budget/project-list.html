@@ -3,15 +3,53 @@
 {% block content %}
 
 <div class="container">
-    <div class="card medium halign-wrapper center">
-        <div class="card-content">
-            <h4 class="grey-text">No projects</h4>
-            <a class="waves-effect waves-light btn-large">
+
+    <section>
+        <div class="card-panel">
+            <h5>Projects budgets</h5>
+        </div>
+    </section>
+
+    <div class="row">
+        {% if project_list %}
+            {% for project in project_list %}
+                <div class="col s12 l4">
+                    <div class="card-panel">
+                        <h6>{{ project.name }}</h6>
+                        <p>
+                            Balance: 
+                            {% if project.budget_balance > 0 %}
+                                <span class="green-text">${{ project.budget_balance }}</span>
+                            {% elif project.budget_balance == 0 %}
+                                <span class="orange-text">${{ project.budget_balance }}</span>
+                            {% else %}
+                                <span class="red-text">${{ project.budget_balance }}</span>
+                            {% endif %}
+                        </p>
+                        <a class="waves-effect waves-light btn-small" style="margin-top: 8px;" href="{% url 'project_detail' project.slug %}">
+                            <i class="material-icons left">forward</i>
+                            Open
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+            <a class="waves-effect waves-light btn-large" href="{% url 'project_create' %}">
                 <i class="material-icons left">add_circle</i>
                 Add project
             </a>
-        </div>
+        {% else %}
+            <div class="card medium halign-wrapper center">
+                <div class="card-content">
+                    <h4 class="grey-text">No projects</h4>
+                    <a class="waves-effect waves-light btn-large" href="{% url 'project_create' %}">
+                        <i class="material-icons left">add_circle</i>
+                        Add project
+                    </a>
+                </div>
+            </div>
+        {% endif %}
     </div>
+    
 </div>
 
 {% endblock %}

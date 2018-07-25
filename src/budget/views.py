@@ -7,7 +7,10 @@ from .forms import ExpenseForm
 import json
 
 def project_list(request):
-    return render(request, 'budget/project-list.html')
+    project_list = Project.objects.all()
+    return render(request, 'budget/project-list.html', {
+                'project_list': project_list,
+                })
 
 def project_detail(request, project_slug):
     project = get_object_or_404(Project, slug=project_slug)
